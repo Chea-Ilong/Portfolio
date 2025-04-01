@@ -1,7 +1,8 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Link, useLocation } from "react-router-dom"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { motion, AnimatePresence } from "framer-motion"
 import { FaMoon, FaSun } from "react-icons/fa"
 
@@ -9,7 +10,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [activeIcon, setActiveIcon] = useState(null)
-  const location = useLocation()
+  const pathname = usePathname()
 
   const toggleMenu = () => {
     setIsOpen(!isOpen)
@@ -21,7 +22,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
 
   useEffect(() => {
     setIsOpen(false)
-  }, [location])
+  }, [pathname])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -83,7 +84,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           <div className="flex items-center">
-            <Link to="/" className="flex-shrink-0">
+            <Link href="/" className="flex-shrink-0">
               <motion.span
                 className="text-[#EB2420] font-bold text-2xl"
                 whileHover={{ scale: 1.1 }}
@@ -97,9 +98,9 @@ const Navbar = ({ darkMode, setDarkMode }) => {
 
           <div className="hidden md:flex items-center space-x-8">
             <div className="flex items-center space-x-6">
-              <NavLink to="/" text="Home" currentPath={location.pathname} />
-              <NavLink to="/projects" text="Projects" currentPath={location.pathname} />
-              <NavLink to="/contact" text="Contact" currentPath={location.pathname} />
+              <NavLink href="/" text="Home" currentPath={pathname} />
+              <NavLink href="/projects" text="Projects" currentPath={pathname} />
+              <NavLink href="/contact" text="Contact" currentPath={pathname} />
             </div>
 
             <div className="pl-6 border-l border-gray-300 dark:border-gray-700">
@@ -176,9 +177,9 @@ const Navbar = ({ darkMode, setDarkMode }) => {
             className="md:hidden overflow-hidden"
           >
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white dark:bg-[#1F1D1B] shadow-lg border-t border-gray-200 dark:border-gray-800">
-              <MobileNavLink to="/" text="Home" currentPath={location.pathname} />
-              <MobileNavLink to="/projects" text="Projects" currentPath={location.pathname} />
-              <MobileNavLink to="/contact" text="Contact" currentPath={location.pathname} />
+              <MobileNavLink href="/" text="Home" currentPath={pathname} />
+              <MobileNavLink href="/projects" text="Projects" currentPath={pathname} />
+              <MobileNavLink href="/contact" text="Contact" currentPath={pathname} />
             </div>
           </motion.div>
         )}
@@ -187,13 +188,13 @@ const Navbar = ({ darkMode, setDarkMode }) => {
   )
 }
 
-const NavLink = ({ to, text, currentPath }) => {
-  const isActive = currentPath === to
+const NavLink = ({ href, text, currentPath }) => {
+  const isActive = currentPath === href
   const [isHovered, setIsHovered] = useState(false)
 
   return (
     <Link
-      to={to}
+      href={href}
       className="relative group"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -230,13 +231,13 @@ const NavLink = ({ to, text, currentPath }) => {
   )
 }
 
-const MobileNavLink = ({ to, text, currentPath }) => {
-  const isActive = currentPath === to
+const MobileNavLink = ({ href, text, currentPath }) => {
+  const isActive = currentPath === href
 
   return (
     <motion.div whileHover={{ x: 5 }} whileTap={{ scale: 0.98 }}>
       <Link
-        to={to}
+        href={href}
         className={`block px-3 py-2 rounded-md text-base font-medium ${
           isActive
             ? "bg-gradient-to-r from-[#EB2420]/20 to-transparent border-l-2 border-[#EB2420] text-gray-900 dark:text-white"
@@ -250,4 +251,3 @@ const MobileNavLink = ({ to, text, currentPath }) => {
 }
 
 export default Navbar
-

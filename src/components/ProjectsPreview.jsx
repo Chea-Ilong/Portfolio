@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { motion } from "framer-motion"
-import { Link } from "react-router-dom"
+import Link from "next/link" // Changed from react-router-dom
 import { FaArrowRight } from "react-icons/fa"
 import ProjectCard from "./ProjectCard"
 
@@ -112,7 +112,7 @@ const ProjectsPreview = () => {
 
         <div className="text-center mt-16">
           <Link
-            to="/projects"
+            href="/projects" // Changed from "to" to "href"
             className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-[#EB2420] to-[#EB2420]/80 text-white font-medium rounded-lg hover:shadow-lg hover:shadow-[#EB2420]/20 transition-all"
           >
             <motion.div
@@ -134,4 +134,3 @@ const ProjectsPreview = () => {
 }
 
 export default ProjectsPreview
-
