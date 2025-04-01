@@ -1,6 +1,6 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { motion } from "framer-motion/dist/framer-motion"
 import Hero from "../components/Hero"
 import Education from "../components/Education"
 import Skills from "../components/Skills"
@@ -37,7 +37,7 @@ const Home = () => {
         transition={{ duration: 0.5, delay: 0.2 }}
         viewport={{ once: true }}
       >
-           <ProjectsPreview />
+        <ProjectsPreview />
         <Skills />
       </motion.div>
 
@@ -63,4 +63,3 @@ const Home = () => {
 }
 
 export default Home
-
