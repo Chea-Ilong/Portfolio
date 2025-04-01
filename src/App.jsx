@@ -7,7 +7,22 @@ import Home from "./pages/Home"
 import Projects from "./pages/Projects"
 import Contact from "./pages/Contact"
 import Footer from "./components/Footer"
-
+function App() {
+  const location = useLocation();
+  
+  // Force reload CSS when route changes in production
+  useEffect(() => {
+    if (process.env.NODE_ENV === 'production') {
+      // This helps CSS reload correctly between route changes
+      const links = document.querySelectorAll('link[rel="stylesheet"]');
+      links.forEach(link => {
+        const newHref = link.href.split('?')[0] + '?v=' + Date.now();
+        link.href = newHref;
+      });
+    }
+  }, [location]);
+  
+}
 function App() {
   const [darkMode, setDarkMode] = useState(() => {
     // Get saved theme from localStorage or use system preference

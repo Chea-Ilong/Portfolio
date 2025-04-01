@@ -2,12 +2,13 @@
 module.exports = {
   darkMode: ["class"],
   content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-    "*.{js,ts,jsx,tsx,mdx}",
-    "app/**/*.{ts,tsx}",
-    "components/**/*.{ts,tsx}",
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",  // Add this for Next.js pages
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",    // For App Router if using it
+    "./src/**/*.{js,ts,jsx,tsx,mdx}",    // Your src directory
+    "./components/**/*.{js,ts,jsx,tsx,mdx}", // Components
   ],
+  // rest of your config...
+
   theme: {
     extend: {
       colors: {
