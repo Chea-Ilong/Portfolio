@@ -1,16 +1,17 @@
 "use client"
 
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom"
 import { useState, useEffect } from "react"
 import Navbar from "./components/Navbar"
 import Home from "./pages/Home"
 import Projects from "./pages/Projects"
 import Contact from "./pages/Contact"
 import Footer from "./components/Footer"
-function App() {
+
+// CSS Reload Component
+const CSSReloader = () => {
   const location = useLocation();
   
-  // Force reload CSS when route changes in production
   useEffect(() => {
     if (process.env.NODE_ENV === 'production') {
       // This helps CSS reload correctly between route changes
@@ -22,7 +23,9 @@ function App() {
     }
   }, [location]);
   
+  return null;
 }
+
 function App() {
   const [darkMode, setDarkMode] = useState(() => {
     // Get saved theme from localStorage or use system preference
@@ -47,6 +50,7 @@ function App() {
   return (
     <Router>
       <div className="min-h-screen bg-white dark:bg-[#1F1D1B] text-gray-900 dark:text-white transition-colors duration-300">
+        <CSSReloader />
         <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -60,4 +64,3 @@ function App() {
 }
 
 export default App
-

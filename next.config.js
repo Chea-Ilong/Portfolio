@@ -4,8 +4,4 @@ module.exports = {
     assetPrefix: './',
     trailingSlash: true,
     images: { unoptimized: true },
-    experimental: {
-      // Try this to help with CSS loading issues
-      optimizeCss: true, 
-    },
   }
