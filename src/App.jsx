@@ -1,6 +1,6 @@
 "use client"
 
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom"
+import { HashRouter as Router, Routes, Route, useLocation } from "react-router-dom"
 import { useState, useEffect } from "react"
 import Navbar from "./components/Navbar"
 import Home from "./pages/Home"
@@ -10,20 +10,20 @@ import Footer from "./components/Footer"
 
 // CSS Reload Component
 const CSSReloader = () => {
-  const location = useLocation();
-  
+  const location = useLocation()
+
   useEffect(() => {
-    if (process.env.NODE_ENV === 'production') {
+    if (process.env.NODE_ENV === "production") {
       // This helps CSS reload correctly between route changes
-      const links = document.querySelectorAll('link[rel="stylesheet"]');
-      links.forEach(link => {
-        const newHref = link.href.split('?')[0] + '?v=' + Date.now();
-        link.href = newHref;
-      });
+      const links = document.querySelectorAll('link[rel="stylesheet"]')
+      links.forEach((link) => {
+        const newHref = link.href.split("?")[0] + "?v=" + Date.now()
+        link.href = newHref
+      })
     }
-  }, [location]);
-  
-  return null;
+  }, [location])
+
+  return null
 }
 
 function App() {
@@ -64,3 +64,4 @@ function App() {
 }
 
 export default App
+

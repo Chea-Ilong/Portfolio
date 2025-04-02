@@ -1,11 +1,3 @@
-# This file tells Netlify how to handle your single-page application
-
-[build]
-  # Adjust these if your build command or output directory is different
-  command = "npm run build"
-  publish = "out"  # This should match your Next.js output directory
-
-# This is the critical part - it tells Netlify to serve index.html for any route
 [[redirects]]
   from = "/*"
   to = "/index.html"
