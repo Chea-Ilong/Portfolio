@@ -29,6 +29,8 @@ const CSSReloader = () => {
 function App() {
   const [darkMode, setDarkMode] = useState(() => {
     // Get saved theme from localStorage or use system preference
+    if (typeof window === "undefined") return false
+
     const savedTheme = localStorage.getItem("theme")
     if (savedTheme) {
       return savedTheme === "dark"
@@ -48,7 +50,7 @@ function App() {
   }, [darkMode])
 
   return (
-    <Router>
+    <Router basename="/">
       <div className="min-h-screen bg-white dark:bg-[#1F1D1B] text-gray-900 dark:text-white transition-colors duration-300">
         <CSSReloader />
         <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
