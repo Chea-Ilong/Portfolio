@@ -1,5 +1,23 @@
+[build]
+  command = "npm run build"
+  publish = "out"
+
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+  force = true
+
+[build.processing]
+  skip_processing = false
+[build.processing.css]
+  bundle = false
+  minify = false
+[build.processing.js]
+  bundle = false
+  minify = false
+[build.processing.html]
+  pretty_urls = false
+[build.processing.images]
+  compress = false
 

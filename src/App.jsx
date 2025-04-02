@@ -50,7 +50,7 @@ function App() {
   }, [darkMode])
 
   return (
-    <Router basename="/">
+    <Router>
       <div className="min-h-screen bg-white dark:bg-[#1F1D1B] text-gray-900 dark:text-white transition-colors duration-300">
         <CSSReloader />
         <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
